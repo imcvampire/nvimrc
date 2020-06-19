@@ -17,7 +17,7 @@ if dein#load_state('~/.dein')
   call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('Shougo/deoplete.nvim') 
+  call dein#add('neoclide/coc.nvim', { 'branch': 'release' }) 
   call dein#add('Yggdroot/indentLine')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('ConradIrwin/vim-bracketed-paste')
