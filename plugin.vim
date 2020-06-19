@@ -4,15 +4,17 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/nqa/.dein/repos/github.com/Shougo/dein.vim
+let g:python3_host_prog="/usr/bin/python3"
+let g:python_host_prog="/usr/bin/python2"
+set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/nqa/.dein')
-  call dein#begin('/Users/nqa/.dein')
+if dein#load_state('~/.dein')
+  call dein#begin('~/.dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/nqa/.dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('sheerun/vim-polyglot')
   call dein#add('Shougo/deoplete.nvim') 
