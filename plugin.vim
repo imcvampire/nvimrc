@@ -16,7 +16,9 @@ if dein#load_state('~/.dein')
   " Required:
   call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('sheerun/vim-polyglot')
+  call dein#add('neovim/nvim-lspconfig')
+  call dein#add('kabouzeid/nvim-lspinstall')
+  " call dein#add('sheerun/vim-polyglot')
   call dein#add('neoclide/coc.nvim', { 'merged':0, 'rev': 'release' })
   call dein#add('Yggdroot/indentLine')
   call dein#add('editorconfig/editorconfig-vim')
@@ -49,7 +51,10 @@ endif
 
 "End dein Scripts-------------------------
 
-" indentLine
+" let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+"indentLine
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 
