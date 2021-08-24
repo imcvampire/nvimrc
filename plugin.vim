@@ -29,7 +29,7 @@ if dein#load_state('~/.dein')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Xuyuanp/nerdtree-git-plugin', { 'depends': 'scrooloose/nerdtree' })
   call dein#add('tpope/vim-surround')
-  call dein#add('morhetz/gruvbox')
+  call dein#add('ray-x/aurora')
   call dein#add('itchyny/lightline.vim')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('w0rp/ale')
@@ -73,9 +73,9 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.git', '\.idea', '\.vscode', 'node_modules']
 let NERDTreeShowHidden = 1
 
-" gruvbox
-let g:gruvbox_italic=1
-colorscheme gruvbox
+" theme
+set termguicolors            " 24 bit color
+colorscheme aurora
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
