@@ -52,11 +52,12 @@ endif
 "End dein Scripts-------------------------
 
 " let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
+" let g:vim_markdown_conceal_code_blocks = 0
 
 "indentLine
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = "nv"
 
 " python
 let g:python_highlight_all = 1
