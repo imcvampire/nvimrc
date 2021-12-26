@@ -8,37 +8,34 @@ let g:python3_host_prog="/usr/bin/python3"
 let g:python_host_prog="/usr/bin/python2"
 set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
 
+call dein#begin('~/.dein')
+
+" Let dein manage dein
 " Required:
-if dein#load_state('~/.dein')
-  call dein#begin('~/.dein')
+call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
+call dein#add('neovim/nvim-lspconfig')
+call dein#add('prabirshrestha/vim-lsp')
+call dein#add('mattn/vim-lsp-settings')
+call dein#add('prabirshrestha/asyncomplete.vim')
+call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+call dein#add('Yggdroot/indentLine')
+call dein#add('editorconfig/editorconfig-vim')
+call dein#add('ConradIrwin/vim-bracketed-paste')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('jlanzarotta/bufexplorer')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('Xuyuanp/nerdtree-git-plugin', { 'depends': 'scrooloose/nerdtree' })
+call dein#add('tpope/vim-surround')
+call dein#add('ray-x/aurora')
+call dein#add('itchyny/lightline.vim')
+call dein#add('Shougo/echodoc.vim')
+call dein#add('w0rp/ale')
+call dein#add('jiangmiao/auto-pairs')
 
-  call dein#add('neovim/nvim-lspconfig')
-  call dein#add('kabouzeid/nvim-lspinstall')
-  " call dein#add('sheerun/vim-polyglot')
-  call dein#add('neoclide/coc.nvim', { 'merged':0, 'rev': 'release' })
-  call dein#add('Yggdroot/indentLine')
-  call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('ConradIrwin/vim-bracketed-paste')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('jlanzarotta/bufexplorer')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('Xuyuanp/nerdtree-git-plugin', { 'depends': 'scrooloose/nerdtree' })
-  call dein#add('tpope/vim-surround')
-  call dein#add('ray-x/aurora')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('Shougo/echodoc.vim')
-  call dein#add('w0rp/ale')
-  call dein#add('jiangmiao/auto-pairs')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+" Required:
+call dein#end()
 
 " Required:
 filetype plugin indent on
