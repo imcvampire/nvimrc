@@ -17,7 +17,11 @@ call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 call dein#add('neovim/nvim-lspconfig')
 call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
-call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+call dein#add('Shougo/ddc.vim')
+call dein#add('vim-denops/denops.vim')
+call dein#add('shun/ddc-vim-lsp')
+call dein#add('Shougo/ddc-matcher_head')
+call dein#add('Shougo/ddc-sorter_rank')
 call dein#add('Yggdroot/indentLine')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ConradIrwin/vim-bracketed-paste')
@@ -44,7 +48,6 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
-
 "End dein Scripts-------------------------
 
 " let g:vim_markdown_conceal = 0
@@ -143,3 +146,21 @@ let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
+call ddc#custom#patch_global('sources', ['vim-lsp'])
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'vim-lsp': {
+    \   'matchers': ['matcher_head'],
+    \   'mark': 'lsp',
+    \ },
+    \ })
+
+inoremap <silent><expr> <TAB>
+  \ ddc#map#pum_visible() ? '<C-n>' :
+  \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+  \ '<TAB>' : ddc#map#manual_complete()
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+
+call ddc#enable()
