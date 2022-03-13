@@ -22,6 +22,9 @@ call dein#add('vim-denops/denops.vim')
 call dein#add('shun/ddc-vim-lsp')
 call dein#add('Shougo/ddc-matcher_head')
 call dein#add('Shougo/ddc-sorter_rank')
+call dein#add('matsui54/denops-signature_help')
+call dein#add('tani/ddc-git')
+call dein#add('tani/ddc-fuzzy')
 call dein#add('Yggdroot/indentLine')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ConradIrwin/vim-bracketed-paste')
@@ -147,18 +150,19 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-call ddc#custom#patch_global('sources', ['vim-lsp'])
+call ddc#custom#patch_global('sources', ['vim-lsp', 'git-file', 'git-commit', 'git-branch'])
 call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank']},
-      \ })
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'vim-lsp': {
-    \   'matchers': ['matcher_head'],
-    \   'mark': 'lsp',
-    \ },
-    \ })
+  \   '_': {
+  \     'matchers': ['matcher_fuzzy'],
+  \     'sorters': ['sorter_fuzzy'],
+  \     'converters': ['converter_fuzzy']
+  \   },
+  \   'vim-lsp': {
+  \     'matchers': ['matcher_head'],
+  \     'converters': ['converter_fuzzy'],
+  \     'mark': 'lsp',
+  \   },
+  \ })
 
 inoremap <silent><expr> <TAB>
   \ ddc#map#pum_visible() ? '<C-n>' :
@@ -168,4 +172,8 @@ inoremap <silent><expr> <TAB>
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
 
+let g:lsp_signature_help_enabled = 0
+
 call ddc#enable()
+call signature_help#enable()
+
