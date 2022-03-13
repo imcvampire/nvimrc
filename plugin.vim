@@ -129,3 +129,10 @@ let g:NERDCompactSexyComs = 1
 
 let g:coq_settings = { 'auto_start': 'shut-up' }
 
+" lspsaga
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+
+" scroll down hover doc or scroll in definition preview
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+" scroll up hover doc
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
