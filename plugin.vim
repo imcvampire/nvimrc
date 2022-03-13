@@ -30,7 +30,6 @@ call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree d
 call dein#add('tpope/vim-surround')
 call dein#add('ray-x/aurora')
 call dein#add('itchyny/lightline.vim')
-call dein#add('Shougo/echodoc.vim')
 call dein#add('w0rp/ale')
 call dein#add('jiangmiao/auto-pairs')
 
@@ -59,23 +58,15 @@ let g:indentLine_concealcursor = "nv"
 let g:python_highlight_all = 1
 
 " CHADtree
+let g:chadtree_settings = {
+  \  'ignore.name_exact': [".DS_Store", ".directory", "thumbs.db", ".git", ".idea"]
+  \ }
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | CHADopen
 nnoremap <leader>v <cmd>CHADopen<cr>
 
 " theme
 set termguicolors            " 24 bit color
 colorscheme aurora
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-
-autocmd CompleteDone * pclose!
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<BS>"
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" echodoc
-let g:echodoc#enable_at_startup = 1
 
 " ale
 function! LinterStatus() abort
@@ -136,5 +127,5 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-let g:coq_settings = { 'auto_start': v:true }
+let g:coq_settings = { 'auto_start': 'shut-up' }
 
