@@ -23,7 +23,7 @@ nmap <leader>w :w!<cr>
 command W w !sudo tee % > /dev/null
 
 set clipboard+=unnamedplus
-
+set mouse=a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface

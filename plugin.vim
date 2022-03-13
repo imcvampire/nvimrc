@@ -15,24 +15,18 @@ call dein#begin('~/.dein')
 call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 
 call dein#add('neovim/nvim-lspconfig')
-call dein#add('prabirshrestha/vim-lsp')
-call dein#add('mattn/vim-lsp-settings')
-call dein#add('Shougo/ddc.vim')
-call dein#add('vim-denops/denops.vim')
-call dein#add('shun/ddc-vim-lsp')
-call dein#add('Shougo/ddc-matcher_head')
-call dein#add('Shougo/ddc-sorter_rank')
-call dein#add('matsui54/denops-signature_help')
-call dein#add('tani/ddc-git')
-call dein#add('tani/ddc-fuzzy')
+call dein#add('williamboman/nvim-lsp-installer')
+call dein#add('glepnir/lspsaga.nvim')
+call dein#add('ms-jpq/coq_nvim', {'rev': 'coq', 'build': 'python3 -m coq deps'})
+call dein#add('ms-jpq/coq.artifacts', {'rev': 'artifacts'})
+call dein#add('ms-jpq/coq.thirdparty', {'rev': '3p'})
 call dein#add('Yggdroot/indentLine')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ConradIrwin/vim-bracketed-paste')
 call dein#add('scrooloose/nerdcommenter')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('Xuyuanp/nerdtree-git-plugin', { 'depends': 'scrooloose/nerdtree' })
+call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
 call dein#add('tpope/vim-surround')
 call dein#add('ray-x/aurora')
 call dein#add('itchyny/lightline.vim')
@@ -64,17 +58,9 @@ let g:indentLine_concealcursor = "nv"
 " python
 let g:python_highlight_all = 1
 
-" nerdtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
-map <C-n> :NERDTreeToggle<CR>
-
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.git', '\.idea', '\.vscode', 'node_modules']
-let NERDTreeShowHidden = 1
+" CHADtree
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | CHADopen
+nnoremap <leader>v <cmd>CHADopen<cr>
 
 " theme
 set termguicolors            " 24 bit color
@@ -150,30 +136,5 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-call ddc#custom#patch_global('sources', ['vim-lsp', 'git-file', 'git-commit', 'git-branch'])
-call ddc#custom#patch_global('sourceOptions', {
-  \   '_': {
-  \     'matchers': ['matcher_fuzzy'],
-  \     'sorters': ['sorter_fuzzy'],
-  \     'converters': ['converter_fuzzy']
-  \   },
-  \   'vim-lsp': {
-  \     'matchers': ['matcher_head'],
-  \     'converters': ['converter_fuzzy'],
-  \     'mark': 'lsp',
-  \   },
-  \ })
-
-inoremap <silent><expr> <TAB>
-  \ ddc#map#pum_visible() ? '<C-n>' :
-  \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-  \ '<TAB>' : ddc#map#manual_complete()
-
-" <S-TAB>: completion back.
-inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
-
-let g:lsp_signature_help_enabled = 0
-
-call ddc#enable()
-call signature_help#enable()
+let g:coq_settings = { 'auto_start': v:true }
 
