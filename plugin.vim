@@ -17,9 +17,13 @@ call dein#add('~/.dein/repos/github.com/Shougo/dein.vim')
 call dein#add('neovim/nvim-lspconfig')
 call dein#add('williamboman/nvim-lsp-installer')
 call dein#add('glepnir/lspsaga.nvim')
-call dein#add('ms-jpq/coq_nvim', {'rev': 'coq', 'build': 'python3 -m coq deps'})
-call dein#add('ms-jpq/coq.artifacts', {'rev': 'artifacts'})
-call dein#add('ms-jpq/coq.thirdparty', {'rev': '3p'})
+call dein#add('hrsh7th/nvim-cmp')
+call dein#add('hrsh7th/cmp-nvim-lsp')
+call dein#add('hrsh7th/cmp-buffer')
+call dein#add('hrsh7th/cmp-path')
+call dein#add('hrsh7th/cmp-cmdline')
+call dein#add('saadparwaiz1/cmp_luasnip')
+call dein#add('L3MON4D3/LuaSnip')
 call dein#add('Yggdroot/indentLine')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ConradIrwin/vim-bracketed-paste')
@@ -45,6 +49,8 @@ if dein#check_install()
   call dein#install()
 endif
 "End dein Scripts-------------------------
+
+set completeopt=menu,menuone,noselect
 
 " let g:vim_markdown_conceal = 0
 " let g:vim_markdown_conceal_code_blocks = 0
@@ -127,8 +133,6 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-let g:coq_settings = { 'auto_start': 'shut-up' }
-
 " lspsaga
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 
@@ -136,3 +140,4 @@ nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 " scroll up hover doc
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+
