@@ -33,7 +33,8 @@ call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
 call dein#add('tpope/vim-surround')
 call dein#add('ray-x/aurora')
-call dein#add('itchyny/lightline.vim')
+call dein#add('nvim-lualine/lualine.nvim')
+call dein#add('kyazdani42/nvim-web-devicons')
 call dein#add('w0rp/ale')
 call dein#add('jiangmiao/auto-pairs')
 
@@ -50,7 +51,6 @@ if dein#check_install()
 endif
 "End dein Scripts-------------------------
 
-set completeopt=menu,menuone,noselect
 
 " let g:vim_markdown_conceal = 0
 " let g:vim_markdown_conceal_code_blocks = 0
@@ -75,6 +75,8 @@ set termguicolors            " 24 bit color
 colorscheme aurora
 
 " ale
+let g:ale_disable_lsp = 1
+
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
@@ -87,44 +89,6 @@ function! LinterStatus() abort
     \   all_errors
     \)
 endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => lightline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lightline = {
-      \ 'active': {
-      \   'left': [
-      \             ['mode', 'paste'],
-      \             ['fugitive', 'readonly', 'modified'],
-      \             ['filename']
-      \           ],
-      \   'right': [
-      \              ['filetype', 'fileencoding', 'fileformat'],
-      \              ['lineinfo', 'percent'],
-      \              [ 'linter' ]
-      \            ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_function': {
-      \   'linter': 'LinterStatus'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-    \ }
-
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_warnings = "\uf071"
-let g:lightline#ale#indicator_errors = "\uf05e"
-let g:lightline#ale#indicator_ok = "\uf00c"
 
 " nerdcommenter
 " Add spaces after comment delimiters by default

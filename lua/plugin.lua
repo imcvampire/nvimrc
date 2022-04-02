@@ -96,3 +96,20 @@ local saga = require 'lspsaga'
 
 saga.init_lsp_saga()
 
+require('lualine').setup {
+  options = {
+    theme = 'auto'
+  },
+  extensions = {'chadtree', 'fzf'},
+  sections = {
+    lualine_b = {
+      'branch',
+      'diff',
+      {
+        'diagnostics',
+
+        sources = { 'nvim_diagnostic', 'nvim_lsp', 'ale' },
+      }
+    }
+  }
+}
