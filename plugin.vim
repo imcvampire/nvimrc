@@ -37,6 +37,7 @@ call dein#add('nvim-lualine/lualine.nvim')
 call dein#add('kyazdani42/nvim-web-devicons')
 call dein#add('w0rp/ale')
 call dein#add('jiangmiao/auto-pairs')
+call dein#add('nvim-treesitter/nvim-treesitter', {'build': ':TSUpdate'})
 
 " Required:
 call dein#end()
