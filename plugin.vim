@@ -32,7 +32,7 @@ call dein#add('jlanzarotta/bufexplorer')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
 call dein#add('tpope/vim-surround')
-call dein#add('ray-x/aurora')
+call dein#add('EdenEast/nightfox.nvim')
 call dein#add('nvim-lualine/lualine.nvim')
 call dein#add('kyazdani42/nvim-web-devicons')
 call dein#add('w0rp/ale')
@@ -52,17 +52,10 @@ if dein#check_install()
 endif
 "End dein Scripts-------------------------
 
-
-" let g:vim_markdown_conceal = 0
-" let g:vim_markdown_conceal_code_blocks = 0
-
 "indentLine
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 let g:indentLine_concealcursor = "nv"
-
-" python
-let g:python_highlight_all = 1
 
 " CHADtree
 let g:chadtree_settings = {
@@ -73,7 +66,7 @@ nnoremap <leader>v <cmd>CHADopen<cr>
 
 " theme
 set termguicolors            " 24 bit color
-colorscheme aurora
+colorscheme duskfox
 
 " ale
 let g:ale_disable_lsp = 1
